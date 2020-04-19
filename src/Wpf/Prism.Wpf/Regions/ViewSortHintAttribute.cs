@@ -1,15 +1,4 @@
-
-
 using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace Prism.Regions
 {
@@ -25,13 +14,13 @@ namespace Prism.Regions
         /// <param name="hint">The hint to use for sorting.</param>
         public ViewSortHintAttribute(string hint)
         {            
-            this.Hint = hint;
+            Hint = hint;
         }
 
         /// <summary>
         /// Gets  the hint.
         /// </summary>
         /// <value>The hint to use for sorting.</value>
-        public string Hint { get; private set; }
+        public string Hint { get; }
     }
 }
