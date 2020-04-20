@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
+using Prism.Mvvm;
 using Prism.Properties;
 using Xamarin.Forms;
 
@@ -10,7 +11,7 @@ namespace Prism.Modularity
     /// Defines the metadata that describes a module.
     /// </summary>
     [ContentProperty(nameof(DependsOn))]
-    public partial class ModuleInfo : IModuleInfo
+    public partial class ModuleInfo : BindableBase, IModuleInfo
     {
         /// <summary>
         /// Initializes a new empty instance of <see cref="ModuleInfo"/>.
@@ -146,9 +147,23 @@ namespace Prism.Modularity
             set { }
         }
 
+        private ModuleState _state;
         /// <summary>
         /// Gets or sets the state of the <see cref="ModuleInfo"/> with regards to the module loading and initialization process.
         /// </summary>
-        ModuleState IModuleInfo.State { get; set; }
+        public ModuleState State
+        {
+            get => _state;
+            private set => SetProperty(ref _state, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the state of the <see cref="ModuleInfo"/> with regards to the module loading and initialization process.
+        /// </summary>
+        ModuleState IModuleInfo.State
+        {
+            get => State;
+            set => State = value;
+        }
     }
 }
